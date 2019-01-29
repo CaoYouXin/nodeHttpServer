@@ -30,7 +30,7 @@ app.use(async ctx => {
       }, {});
     console.log("params", params);
 
-    if (!params.dir || params.gitName || !params.nginx || !params.www) {
+    if (!params.dir || params.gitName || !params.nginx) {
       throw new Error("no dir specified.");
     }
 
@@ -61,6 +61,8 @@ app.use(async ctx => {
     ctx.response.status = 200;
     ctx.body = "Requested Done";
   } catch (err) {
+    console.log(err);
+    console.error(err);
     ctx.response.status = 500;
     ctx.body = "Something went wrong";
   }
