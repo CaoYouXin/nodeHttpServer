@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "prepublish": "pm2 stop index.js",
+    "publish": "pm2 start index.js",
     "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 0"
   },
