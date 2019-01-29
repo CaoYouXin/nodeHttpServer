@@ -30,7 +30,7 @@ app.use(async ctx => {
       }, {});
     console.log("params", params);
 
-    if (!params.dir || params.gitName || !params.nginx) {
+    if (!params.dir || params.gitName || !params.nginx || !params.www) {
       throw new Error("no dir specified.");
     }
 
@@ -48,6 +48,9 @@ app.use(async ctx => {
 
     execSync(`cd ${params.dir}/${gitName}/ && npm run build`);
     console.log("repo build well done");
+
+    copyFileSync(`${params.dir}/${gitName}/dist`, `${params.www}/${gitName}`);
+    console.log("copied dist file");
 
     copyFileSync(
       `${params.dir}/${gitName}/route`,
