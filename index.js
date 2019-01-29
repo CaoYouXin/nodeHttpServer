@@ -49,9 +49,6 @@ app.use(async ctx => {
     execSync(`cd ${params.dir}/${gitName}/ && npm run build`);
     console.log("repo build well done");
 
-    copyFileSync(`${params.dir}/${gitName}/dist`, `${params.www}/${gitName}`);
-    console.log("copied dist file");
-
     copyFileSync(
       `${params.dir}/${gitName}/route`,
       `${params.nginx}/${gitName}`
